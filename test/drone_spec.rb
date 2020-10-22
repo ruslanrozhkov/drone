@@ -1,4 +1,3 @@
-require_relative '../lib/engine'
 require_relative '../lib/drone'
 
 RSpec.describe Drone do
@@ -6,7 +5,7 @@ RSpec.describe Drone do
 
   describe "#engines" do
     it "drone has n engines" do
-      expect(drone.engines).to eq(4)
+      expect(drone.engines.size).to eq(4)
     end
   end
 end
