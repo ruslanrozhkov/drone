@@ -43,6 +43,14 @@ class Drone
     @status = "off"
   end
 
+  ["forward", "left", "right", "back", "up", "down"].each do |to|
+    define_method("move_#{to}") {
+      @gyroscope.x = rand(0..100)
+      @gyroscope.y = rand(0..100)
+      @gyroscope.z = rand(0..100)
+    }
+  end
+
   private
 
   def reduce_speed

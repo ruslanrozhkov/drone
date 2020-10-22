@@ -44,4 +44,10 @@ RSpec.describe Drone do
       expect(drone.status).to eq("off")
     end
   end
+
+  describe "#move_forward" do
+    it "move drone forward" do
+      expect(drone).to respond_to(:move_forward)
+    end
+  end
 end
