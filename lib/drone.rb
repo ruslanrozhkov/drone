@@ -36,9 +36,30 @@ class Drone
     @status = "hovering"
   end
 
+  def land
+    stabilize
+    reduce_speed
+    stop_engines
+    @status = "off"
+  end
+
   private
+
+  def reduce_speed
+    threads = []
+
+    engines.each do |engine|
+      threads << Thread.new { engine.power.times { |_| engine.power -= 1 } }
+    end
+
+    threads.each { |thread| thread.join }
+  end
 
   def start_engines
     engines.each { |engine| engine.status = "on" }
+  end
+
+  def stop_engines
+    engines.each { |engine| engine.status = "off" }
   end
 end

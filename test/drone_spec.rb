@@ -35,4 +35,13 @@ RSpec.describe Drone do
       expect(drone.status).to eq("hovering")
     end
   end
+
+  describe "#land" do
+    it "stabilizes and goes down at reduce speed" do
+      drone.land
+      expect(drone.engines.first.power).to eq(0)
+      expect(drone.engines.first.status).to eq("off")
+      expect(drone.status).to eq("off")
+    end
+  end
 end
