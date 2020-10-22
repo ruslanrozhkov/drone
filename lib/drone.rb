@@ -1,15 +1,18 @@
 # drone.rb
 require_relative 'engine'
+require_relative 'gyroscope'
 
 class Drone
 
   attr_reader :status
   attr_reader :engines
+  attr_reader :gyroscope
 
   STATUSES = ["off", "hovering", "moving"]
 
   def initialize(engines: 4)
-    @status = "off"
+    @status    = "off"
+    @gyroscope = Gyroscope.new
     add_engines(engines)
   end
 
