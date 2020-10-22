@@ -18,5 +18,6 @@ class Engine
 
   def status=(status)
     @status = status if STATUSES.include?(status)
+    STDOUT.puts "Drone goes off" if @status == "off"
   end
 end

@@ -1,6 +1,7 @@
 # drone.rb
 require_relative 'engine'
 require_relative 'gyroscope'
+require_relative 'orientation_sensor'
 
 class Drone
 
@@ -13,6 +14,7 @@ class Drone
   def initialize(engines: 4)
     @status    = "off"
     @gyroscope = Gyroscope.new
+    @sensor    = OrientationSensor.new(@gyroscope)
     add_engines(engines)
   end
 
@@ -47,7 +49,9 @@ class Drone
     define_method("move_#{to}") {
       @gyroscope.x = rand(0..100)
       @gyroscope.y = rand(0..100)
-      @gyroscope.z = rand(0..100)
+
+      STDOUT.puts "The pitch is aligned to #{@sensor.pitch}"
+      STDOUT.puts "The roll is aligned to #{@sensor.roll}"
     }
   end
 
