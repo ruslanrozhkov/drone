@@ -26,7 +26,19 @@ class Drone
     @engines ||= []
   end
 
-  def status=(status)
-    @status = status if STATUSES.include?(status)
+  def take_off
+    start_engines
+    stabilize
+  end
+
+  def stabilize
+    engines.each { |engine| engine.power = 50 }
+    @status = "hovering"
+  end
+
+  private
+
+  def start_engines
+    engines.each { |engine| engine.status = "on" }
   end
 end
