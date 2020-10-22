@@ -12,7 +12,9 @@ RSpec.describe Engine do
       engine.power = 100
       expect(engine.power).to eq(100)
     end
+  end
 
+  describe "#status" do
     it "an engine has a status (off, on)" do
       expect(["on", "off"]).to include(engine.status)
     end
