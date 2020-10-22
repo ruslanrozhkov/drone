@@ -19,4 +19,10 @@ RSpec.describe Drone do
       expect(drone.status).to eq("hovering")
     end
   end
+
+  describe "#gyroscope" do
+    it "drone has one gyroscope" do
+      expect(drone).to respond_to(:gyroscope)
+    end
+  end
 end
