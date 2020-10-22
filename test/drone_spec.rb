@@ -8,4 +8,15 @@ RSpec.describe Drone do
       expect(drone.engines.size).to eq(4)
     end
   end
+
+  describe "#status" do
+    it "the drone has a status (off, hovering, moving)" do
+      expect(["off", "hovering", "moving"]).to include(drone.status)
+    end
+
+    it "take off drone" do
+      drone.status = "hovering"
+      expect(drone.status).to eq("hovering")
+    end
+  end
 end
